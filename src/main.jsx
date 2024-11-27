@@ -1,10 +1,17 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css'
-import App from './App.jsx'
+import Home from './pages/Home.jsx'
+import BallAndBottleToss from './pages/BallAndBottleToss.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/ball-and-bottle-toss" element={<BallAndBottleToss />} />
+      </Routes>
+    </Router>
   </StrictMode>,
 )
