@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 
-const BallVerticalSliderContoller = ({onBallStrengthValueChange}) => {
+const BallSpeedContoller = () => {
     
   const [value, setValue] = useState(40);
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    onBallStrengthValueChange(-1 * Number(event.target.value));
-  };
 
   return (
     <div className="absolute top-1/3 right-14 transform translate-y-1/2 z-50 flex items-center">
@@ -26,4 +21,4 @@ const BallVerticalSliderContoller = ({onBallStrengthValueChange}) => {
   );
 };
 
-export default BallVerticalSliderContoller;
+export default BallSpeedContoller;

@@ -5,25 +5,35 @@ import { useFrame } from '@react-three/fiber';
 const Ball = ({ballStrengthValue}) => {
     const { nodes, materials } = useGLTF('/ball_-_shooting_area.glb')
     const [hovered, setIsHovered] = useState(false);
+    const [time, setTime] = useState(0); // tracking the elapsed time
     const ref = useRef();
 
 
 
     const g = 9.8; // the gravitational constant
-    const angle = 45 * (Math.PI / 180); // the angle in radians
-    const initialVelocity = ballStrengthValue*5; // initial velocity
+    const angle = (((ballStrengthValue - 0) / (100 - 0)) * (90 - 0) + 0)  *  (Math.PI / 180); // the angle in radians
+    let initialYVelocity = 30; // ToDo: needs a new slider
+    let initialZVelocity = 30; // ToDo: needs a new slide
 
-    let initialYVelocity = 0; // initial vertical velocity
-    let initialZVelocity = 0; // initial horizontal velocity
-
-    const [time, setTime] = useState(0); // tracking the elapsed time
 
     useFrame((state, delta) => {
-        setTime((prevTime) => prevTime + delta); // incrementing the time by delta each frame
+        // if(ref.current.position.y < 15){
+            setTime((prevTime) => prevTime + delta); // incrementing the time by delta each frame
 
-        const zPosition = initialZVelocity * time - (0.5 * g * time * time);
-        
-        ref.current.position.z = zPosition/20;
+            const yPosition = initialYVelocity * time - 0.5 * g * time * time;
+            const zPosition = initialZVelocity * time;
+    
+            ref.current.position.y += yPosition;
+            ref.current.position.y /= 10;
+    
+            ref.current.position.z -= zPosition;
+            ref.current.position.z /= 10;
+
+            if(ref.current.position.z < -15 && ref.current.position.z > -18){
+                console.log("The ball passed the iron cans!");
+                setTime(0); // which means stopping the ball from moving further
+            }
+
     });
 
     return (
@@ -46,7 +56,7 @@ const Ball = ({ballStrengthValue}) => {
         receiveShadow
         geometry={nodes['01_Props004_PropsMat001_0'].geometry}
         material={materials['PropsMat.001']}
-        position={[0, (((ballStrengthValue - 0) / (100 - 0)) * (-14 - -2.5) + -2.5), 4]}
+        position={[0, (((ballStrengthValue - 0) / (100 - 0)) * (-10 - -7.5) + -7.5), 4]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={2}
         />

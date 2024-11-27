@@ -5,7 +5,7 @@ import Ball from '../models/Ball';
 import BallVerticalSliderContoller from '../components/BallVerticalSliderContoller';
 
 const BallAndBottleToss = () => {
-  const [ballStrengthValue, setBallStrengthValue] = useState(50);
+  const [ballStrengthValue, setBallStrengthValue] = useState(30);
 
   const handleBallStrengthValue = (value) => {
     setBallStrengthValue(value);
