@@ -8,10 +8,15 @@ import BallSpeedContoller from '../components/BallSpeedContoller';
 
 
 const BallAndBottleToss = () => {
-  const [ballAngleValue, setballAngleValue] = useState(30);
+  const [ballAngleValue, setballAngleValue] = useState(0);
+  const [ballSpeedValue, setballSpeedValuee] = useState(0);
 
-  const handleballAngleValue = (value) => {
+  const handleBallAngleValue = (value) => {
     setballAngleValue(value);
+  };
+
+  const handleBallSpeedValue = (value) => {
+    setballSpeedValuee(value);
   };
 
   return (
@@ -19,14 +24,14 @@ const BallAndBottleToss = () => {
       <div className="absolute top-0 w-full h-1/2 bg-blue-200 flex items-center justify-center"></div>
       <div className="absolute bottom-0 w-full h-1/2 bg-green-900"></div>
 
-      {/* <BallSpeedContoller /> */}
-      <BallAngleContoller onBallAngleValueChange={handleballAngleValue} />
+      <BallSpeedContoller onBallSpeedValueChange={handleBallSpeedValue}/>
+      <BallAngleContoller onBallAngleValueChange={handleBallAngleValue} />
 
       <Canvas className="w-full h-screen bg-transparent" shadows>
         <ambientLight intensity={0.7} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
         <IronCan />
-        <Ball ballAngleValue={ballAngleValue} />
+        <Ball ballAngleValue={ballAngleValue} ballSpeedValue={ballSpeedValue} />
       </Canvas>
     </div>
   );

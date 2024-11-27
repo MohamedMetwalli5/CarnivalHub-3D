@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 
-const BallSpeedContoller = () => {
+const BallSpeedContoller = ({onBallSpeedValueChange}) => {
     
-  const [value, setValue] = useState(40);
+  const [value, setValue] = useState(0);
+
+  const handleSpeedChange = (event) => {
+    setValue(event.target.value);
+    onBallSpeedValueChange(Math.abs(Number(event.target.value)));
+  }
 
   return (
-    <div className="absolute top-1/3 right-14 transform translate-y-1/2 z-50 flex items-center">
+    <div className="absolute top-1/3 right-48 transform translate-y-1/2 z-50 flex items-center">
       <div className="relative h-64 w-10">
         <input
           type="range"

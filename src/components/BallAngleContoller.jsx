@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const BallAngleContoller = ({onBallAngleValueChange}) => {
     
-  const [value, setValue] = useState(40);
+  const [value, setValue] = useState(0);
 
   const handleAngleChange = (event) => {
     setValue(event.target.value);
-    onBallAngleValueChange(-1 * Number(event.target.value));
+    onBallAngleValueChange(Math.abs(Number(event.target.value)));
   };
 
   return (

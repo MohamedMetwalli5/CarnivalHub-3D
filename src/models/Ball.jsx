@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
-const Ball = ({ballAngleValue}) => {
+const Ball = ({ballAngleValue, ballSpeedValue}) => {
     const { nodes, materials } = useGLTF('/ball_-_shooting_area.glb')
     const [hovered, setIsHovered] = useState(false);
     const [time, setTime] = useState(0); // tracking the elapsed time
@@ -11,9 +11,9 @@ const Ball = ({ballAngleValue}) => {
 
 
     const g = 9.8; // the gravitational constant
-    const angle = (-ballAngleValue) * (Math.PI / 180); // the angle in radians (in range here from 0 to 90)
-    let initialYVelocity = 25; // ToDo: connects the speed slider to it and configuring the speed slide
-    let initialZVelocity = 25; // ToDo: connects the speed slider to it and configuring the speed slide
+    const angle = ballAngleValue * (Math.PI / 180); // the angle in radians (in range here from 0 to 90)
+    let initialYVelocity = ballSpeedValue; // ToDo: connects the speed slider to it and configuring the speed slide
+    let initialZVelocity = ballSpeedValue; // ToDo: connects the speed slider to it and configuring the speed slide
 
 
     useFrame((state, delta) => {
@@ -62,7 +62,7 @@ const Ball = ({ballAngleValue}) => {
         receiveShadow
         geometry={nodes['01_Props004_PropsMat001_0'].geometry}
         material={materials['PropsMat.001']}
-        position={[0, (-ballAngleValue), 4]}
+        position={[0, ballAngleValue, 4]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={2}
         />
