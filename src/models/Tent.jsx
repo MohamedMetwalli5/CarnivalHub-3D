@@ -30,7 +30,8 @@ const Tent = (props) => {
         receiveShadow
         geometry={nodes.pCylinder1_lambert1_0.geometry}
         material={materials.lambert1}
-        position={[0, 0, -30]}
+        rotation={[0, 12, 0]}
+        position={[28, 0, -35]}
         scale={hovered ? [9.54, 5.412, 9.54] : [9.54, 5.412, 5.54]}
       />
       <mesh
