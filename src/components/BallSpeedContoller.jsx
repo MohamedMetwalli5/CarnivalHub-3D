@@ -12,7 +12,7 @@ const BallSpeedContoller = () => {
           min="0"
           max="100"
           value={value}
-          onChange={handleChange}
+          onChange={handleSpeedChange}
           className="absolute w-fit h-fit transform -rotate-90 bg-blue-500 rounded-lg appearance-none cursor-pointer"
         />
         <div className="absolute top-0 text-lg font-bold text-blue-500">{value}%</div>
