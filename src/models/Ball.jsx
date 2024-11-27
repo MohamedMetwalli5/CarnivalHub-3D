@@ -33,40 +33,38 @@ const Ball = ({ballAngleValue, ballSpeedValue}) => {
                 setTime(0); // which means stopping the ball from moving further
             }
 
-            // if(ref.current.position.z < -3 && ref.current.position.y > 0){
-            //     console.log("You shot is weak!");
-            //     // setTime(0); // which means stopping the ball from moving further
-            // }
-
-
-
+            if(ref.current.position.y < -16){
+                console.log("Your shot is weak!");
+                setTime(0); // which means stopping the ball from moving further
+            }
     });
 
+
     return (
-    <group 
-        ref={ref}
-        dispose={null}
-        onPointerOver={(event) => {
-            event.stopPropagation();
-            setIsHovered(true);
-            document.body.style.cursor = 'pointer';
-        }}
-        onPointerOut={(event) => {
-            event.stopPropagation();
-            setIsHovered(false);
-            document.body.style.cursor = 'default';
-        }}
-    >
-        <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes['01_Props004_PropsMat001_0'].geometry}
-        material={materials['PropsMat.001']}
-        position={[0, ballAngleValue, 4]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={2}
-        />
-    </group>
+        <group 
+            ref={ref}
+            dispose={null}
+            onPointerOver={(event) => {
+                event.stopPropagation();
+                setIsHovered(true);
+                document.body.style.cursor = 'pointer';
+            }}
+            onPointerOut={(event) => {
+                event.stopPropagation();
+                setIsHovered(false);
+                document.body.style.cursor = 'default';
+            }}
+        >
+            <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes['01_Props004_PropsMat001_0'].geometry}
+            material={materials['PropsMat.001']}
+            position={[0, -0.5, 4]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={2}
+            />
+        </group>
     )
 }
 useGLTF.preload('/ball_-_shooting_area.glb')
