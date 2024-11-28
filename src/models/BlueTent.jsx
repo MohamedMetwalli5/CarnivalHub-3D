@@ -23,7 +23,7 @@ const BlueTent = (props) => {
             setIsHovered(false);
             document.body.style.cursor = 'default';
           }}
-        //   onClick={() => navigate('////')}
+          onClick={() => navigate('/target-shooting')}
         >
         <mesh
         castShadow
