@@ -34,6 +34,7 @@ const IronCan = forwardRef(({shootTheBall, ballCurrentPosition}, ref) => {
       mass: 1,
       type: "Dynamic",
       position,
+      material: { friction: 0.5 }, 
       rotation: [-Math.PI / 2, 0, 0],
     }));
 
@@ -49,6 +50,7 @@ const IronCan = forwardRef(({shootTheBall, ballCurrentPosition}, ref) => {
     });
   });
 
+  
   const scatterAll = () => {
     canAPIs.forEach((api) => {
       const impulse = [
@@ -60,22 +62,39 @@ const IronCan = forwardRef(({shootTheBall, ballCurrentPosition}, ref) => {
     });
   };
 
-//   console.log(ballCurrentPosition);
   
-  const scatterSpecificBalls = () => {
-    canAPIs.forEach((api) => {
+
+const scatterSpecificBalls = () => {
+    canAPIs.forEach((api, index) => {
       api.position.subscribe((currentPos) => {
         const [canX, canY, canZ] = currentPos;
-        if (Math.round(canY) == Math.round(ballCurrentPosition[1]) && Math.round(canZ) == Math.round(ballCurrentPosition[2])) {
-            // console.log(Math.round(ballCurrentPosition[1]));
+        const [ballX, ballY, ballZ] = ballCurrentPosition;
+        const distance = Math.sqrt((ballX-canX)**2 + (ballY-canY)**2 + (ballZ-canZ)**2); // The distance between the ball and the center of the can
+  
+        // If the distance is less than or equal to 2  (1 for ball + 1 for the can)
+        if (distance <= 2) {
           const impulse = [
-            (Math.random() - 0.5) * 5,  
-            Math.random() * 5,          
-            -5,                         
+            (Math.random() - 0.5) * 4,
+            Math.random() * 4,
+            -4,
           ];
           api.applyImpulse(impulse, [0, 0, 0]);
+  
+          // For the other cans above the current can
+          cans.forEach((otherPosition, otherIndex) => {
+            const [otherCanX, otherCanY, otherCanZ] = otherPosition;
+            if (Math.floor(otherCanY) > Math.floor(canY)) {
+            // console.log(Math.floor(otherCanY));
+              const otherCanAPI = canAPIs[otherIndex]; // Getting the API for the other can
+              const impulse = [
+                (Math.random() - 0.5) * 4,
+                Math.random() * 4,
+                -4,
+              ];
+              otherCanAPI.applyImpulse(impulse, [0, 0, 0]);
+            }
+          });
         }
-        // console.log(x, y, z);
       });
     });
   };
