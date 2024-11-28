@@ -26,6 +26,9 @@ const BallAndBottleToss = () => {
 
       <BallSpeedContoller onBallSpeedValueChange={handleBallSpeedValue}/>
       <BallAngleContoller onBallAngleValueChange={handleBallAngleValue} />
+      <button className="absolute bottom-48 right-6 p-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 hover:cursor-pointer">
+        Shoot
+      </button>
 
       <Canvas className="w-full h-screen bg-transparent" shadows>
         <ambientLight intensity={0.7} />
