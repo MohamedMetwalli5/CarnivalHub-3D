@@ -1,8 +1,11 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
+import { useFrame } from '@react-three/fiber';
 
-const IronCan = forwardRef((props, ref) => {
+
+
+const IronCan = forwardRef(({shootTheBall, ballCurrentPosition}, ref) => {
   const { nodes, materials } = useGLTF('/iron_can.glb');
 
   // The positions of the cans
@@ -21,7 +24,7 @@ const IronCan = forwardRef((props, ref) => {
 
   const canRefs = [];
   const canAPIs = [];
-
+  
 
   const MIN_Y = -1; // Acting as the ground
 
@@ -37,7 +40,6 @@ const IronCan = forwardRef((props, ref) => {
     canRefs.push(canRef);
     canAPIs.push(api);
 
-    
     api.position.subscribe(([x, y, z]) => {
       if (y < MIN_Y) {
         // Stoping the downward motion by setting velocity to zero
@@ -58,14 +60,41 @@ const IronCan = forwardRef((props, ref) => {
     });
   };
 
+//   console.log(ballCurrentPosition);
   
+  const scatterSpecificBalls = () => {
+    canAPIs.forEach((api) => {
+      api.position.subscribe((currentPos) => {
+        const [canX, canY, canZ] = currentPos;
+        if (Math.round(canY) == Math.round(ballCurrentPosition[1]) && Math.round(canZ) == Math.round(ballCurrentPosition[2])) {
+            // console.log(Math.round(ballCurrentPosition[1]));
+          const impulse = [
+            (Math.random() - 0.5) * 5,  
+            Math.random() * 5,          
+            -5,                         
+          ];
+          api.applyImpulse(impulse, [0, 0, 0]);
+        }
+        // console.log(x, y, z);
+      });
+    });
+  };
+  
+  scatterSpecificBalls();
+
   useImperativeHandle(ref, () => ({
-    scatterAll,
-    shoot: () => {scatterAll();},
+    // scatterAll,
+    shoot: () => {
+        if(!shootTheBall){
+            console.log("Shoot the ball!", shootTheBall); 
+        }
+    },
   }));
 
+
+
   return (
-    <group {...props}>
+    <group>
       {cans.map((position, index) => (
         <mesh
           key={index}

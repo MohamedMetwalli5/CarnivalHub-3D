@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
-const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall}) => {
+const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall, onBallCurrentPositionChange}) => {
     const { nodes, materials } = useGLTF('/ball_-_shooting_area.glb')
     const [hovered, setIsHovered] = useState(false);
     const [time, setTime] = useState(0); // tracking the elapsed time
@@ -12,30 +12,31 @@ const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall}) => {
 
     const g = 9.8; // the gravitational constant
     const angle = ballAngleValue * (Math.PI / 180); // the angle in radians (in range here from 0 to 90)
-    let initialYVelocity = ballSpeedValue; // ToDo: connects the speed slider to it and configuring the speed slide
-    let initialZVelocity = ballSpeedValue; // ToDo: connects the speed slider to it and configuring the speed slide
+    let initialYVelocity = ballSpeedValue;
+    let initialZVelocity = ballSpeedValue;
 
 
     useFrame((state, delta) => {
-            setTime((prevTime) => prevTime + delta); // incrementing the time by delta each frame
+            if(shootTheBall){
+                
+                onBallCurrentPositionChange([ref.current.position.x, ref.current.position.y, ref.current.position.z]);
 
-            const yPosition = initialYVelocity * time - 0.5 * g * time * time;
-            const zPosition = initialZVelocity * time;
-    
-            ref.current.position.y += yPosition;
-            ref.current.position.y /= 10;
-    
-            ref.current.position.z -= zPosition;
-            ref.current.position.z /= 10;
+                setTime((prevTime) => prevTime + delta); // incrementing the time by delta each frame
 
-            if(ref.current.position.z < -8 && ref.current.position.z > -10){
-                console.log("The ball passed the iron cans!");
-                setTime(0); // which means stopping the ball from moving further
+                const yPosition = initialYVelocity * time - 0.5 * g * time * time;
+                const zPosition = initialZVelocity * time;
+        
+                ref.current.position.y += yPosition;
+                ref.current.position.y /= 10;
+        
+                ref.current.position.z -= zPosition;
+                ref.current.position.z /= 10;
             }
-            // else if(ref.current.position.y > 0 && ref.current.position.z > -7){
-            //     console.log("Your shot is weak!");
-            //     setTime(0); // which means stopping the ball from moving further
-            // }
+
+            if(ref.current.position.z < -10 && ref.current.position.z > -12){
+                console.log("The ball passed the iron cans!");
+                // setTime(0); // which means stopping the ball from moving further
+            }
     });
 
 
@@ -59,7 +60,7 @@ const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall}) => {
             receiveShadow
             geometry={nodes['01_Props004_PropsMat001_0'].geometry}
             material={materials['PropsMat.001']}
-            position={[0, -0.5, 4]}
+            position={[0, -1.5, 4]}
             rotation={[-Math.PI / 2, 0, 0]}
             scale={2}
             />

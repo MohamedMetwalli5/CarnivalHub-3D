@@ -10,6 +10,7 @@ const BallAndBottleToss = () => {
   const [ballAngleValue, setBallAngleValue] = useState(0);
   const [ballSpeedValue, setBallSpeedValue] = useState(0);
   const [shootTheBall, setShootTheBall] = useState(false);
+  const [ballCurrentPosition, setBallCurrentPosition] = useState([0, -1.5, 4]);
 
   const canRef = useRef();
 
@@ -20,9 +21,13 @@ const BallAndBottleToss = () => {
   const handleShoot = () => {
     setShootTheBall(true);
     canRef.current.shoot(); // shooting the ball
-    setTimeout(() => {
-      canRef.current.scatterAll();
-    }, 100);
+    // setTimeout(() => {
+    //   canRef.current.scatterAll();
+    // }, 100);
+  };
+
+  const handleBallCurrentPositionChange = (value) => {
+    setBallCurrentPosition(value);
   };
 
   return (
@@ -43,10 +48,10 @@ const BallAndBottleToss = () => {
       <Canvas className="w-full h-screen bg-transparent" shadows>
         <ambientLight intensity={0.7} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
-        {/* To keep the cans static while maintaining their dynamic behavior for a cool scattering effect, I set their gravitational constant to a small value of 0.001 :) */}
-        <Physics gravity={[0, -0.001, 0]}>
-          <IronCan ref={canRef} />
-          <Ball ballAngleValue={ballAngleValue} ballSpeedValue={ballSpeedValue} shootTheBall={shootTheBall}/>
+        {/* To keep the cans static while maintaining their dynamic behavior for a cool scattering effect, I set their gravitational constant to a small value of 0.000001 :) */}
+        <Physics gravity={[0, -0.000001, 0]}>
+          <IronCan ref={canRef} shootTheBall={shootTheBall} ballCurrentPosition={ballCurrentPosition}/>
+          <Ball ballAngleValue={ballAngleValue} ballSpeedValue={ballSpeedValue} shootTheBall={shootTheBall} onBallCurrentPositionChange={handleBallCurrentPositionChange}/>
         </Physics>
       </Canvas>
     </div>
