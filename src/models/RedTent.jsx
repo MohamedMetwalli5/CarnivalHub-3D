@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
 
-const Tent = (props) => {
+const RedTent = (props) => {
   const { nodes, materials } = useGLTF('/circus.glb');
 
   const [hovered, setIsHovered] = useState(false);
@@ -46,7 +46,7 @@ const Tent = (props) => {
 
 useGLTF.preload('/circus.glb');
 
-export default Tent;
+export default RedTent;
 
 
 

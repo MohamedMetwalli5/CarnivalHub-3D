@@ -1,7 +1,8 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import Tent from '../models/tent';
+import RedTent from '../models/RedTent';
 import MagicalDuo from '../models/MagicalDuo';
+import BlueTent from '../models/BlueTent';
 
 const Home = () => {
   return (
@@ -14,8 +15,9 @@ const Home = () => {
       <Canvas className="w-full h-screen bg-transparent" shadows>
         <ambientLight intensity={0.7} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
-        <Tent />
+        <BlueTent />
         <MagicalDuo />
+        <RedTent />
       </Canvas>
     </div>
   );
