@@ -26,7 +26,9 @@ const BallAndBottleToss = () => {
 
       <BallSpeedContoller onBallSpeedValueChange={handleBallSpeedValue}/>
       <BallAngleContoller onBallAngleValueChange={handleBallAngleValue} />
-      <button className="absolute bottom-48 right-6 p-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 hover:cursor-pointer">
+
+      {/*ToDo: Adding the shootig button logic*/}
+      <button onClick={() => console.log("Shoot!")} className="absolute bottom-48 right-6 p-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md z-50 hover:bg-blue-700 hover:cursor-pointer">
         Shoot
       </button>
 
