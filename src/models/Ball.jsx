@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
-const Ball = ({ballAngleValue, ballSpeedValue}) => {
+const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall}) => {
     const { nodes, materials } = useGLTF('/ball_-_shooting_area.glb')
     const [hovered, setIsHovered] = useState(false);
     const [time, setTime] = useState(0); // tracking the elapsed time
@@ -28,15 +28,14 @@ const Ball = ({ballAngleValue, ballSpeedValue}) => {
             ref.current.position.z -= zPosition;
             ref.current.position.z /= 10;
 
-            if(ref.current.position.z < -15 && ref.current.position.z > -18){
+            if(ref.current.position.z < -8 && ref.current.position.z > -10){
                 console.log("The ball passed the iron cans!");
                 setTime(0); // which means stopping the ball from moving further
             }
-
-            if(ref.current.position.y < -16){
-                console.log("Your shot is weak!");
-                setTime(0); // which means stopping the ball from moving further
-            }
+            // else if(ref.current.position.y > 0 && ref.current.position.z > -7){
+            //     console.log("Your shot is weak!");
+            //     setTime(0); // which means stopping the ball from moving further
+            // }
     });
 
 

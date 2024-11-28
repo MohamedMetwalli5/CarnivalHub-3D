@@ -1,167 +1,85 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useNavigate } from 'react-router-dom';
+import { useBox } from '@react-three/cannon';
 
-const IronCan = (props) => {
-  const { nodes, materials } = useGLTF('/iron_can.glb')
+const IronCan = forwardRef((props, ref) => {
+  const { nodes, materials } = useGLTF('/iron_can.glb');
 
-  const [hovered, setIsHovered] = useState(false);
+  // The positions of the cans
+  const cans = [
+    [1.1, 0, -7],
+    [3.3, 0, -7],
+    [-1.2, 0, -7],
+    [-3.4, 0, -7],
+    [0.1, 2, -7],
+    [2.3, 2, -7],
+    [-2.2, 2, -7],
+    [-1.1, 4, -7],
+    [1.1, 4, -7],
+    [0.1, 6, -7],
+  ];
+
+  const canRefs = [];
+  const canAPIs = [];
+
+
+  const MIN_Y = -1; // Acting as the ground
+
+  // Initialize physics bodies for each can
+  cans.forEach((position, index) => {
+    const [canRef, api] = useBox(() => ({
+      mass: 1,
+      type: "Dynamic",
+      position,
+      rotation: [-Math.PI / 2, 0, 0],
+    }));
+
+    canRefs.push(canRef);
+    canAPIs.push(api);
+
+    
+    api.position.subscribe(([x, y, z]) => {
+      if (y < MIN_Y) {
+        // Stoping the downward motion by setting velocity to zero
+        api.velocity.set(0, 0, 0);
+        api.position.set(x, MIN_Y, z);
+      }
+    });
+  });
+
+  const scatterAll = () => {
+    canAPIs.forEach((api) => {
+      const impulse = [
+        (Math.random() - 0.5) * 5, // X direction
+        Math.random() * 5,        // Y direction
+        -5,                       // Z direction (as when the can is hit it is difinetly will move backward)
+      ];
+      api.applyImpulse(impulse, [0, 0, 0]); // Applying impulse to the center of mass
+    });
+  };
+
+  
+  useImperativeHandle(ref, () => ({
+    scatterAll,
+    shoot: () => {scatterAll();},
+  }));
 
   return (
-    <group 
-    {...props} dispose={null}
-        onPointerOver={(event) => {
-            event.stopPropagation();
-            setIsHovered(true);
-            document.body.style.cursor = 'pointer';
-        }}
-        onPointerOut={(event) => {
-            event.stopPropagation();
-            setIsHovered(false);
-            document.body.style.cursor = 'default';
-        }}
-    >
-        <group rotation={[-Math.PI / 2, 0, 0]}>
-
-            {/* 5th row */}
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[0, 12, -3]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[2.1, 12, -3]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[4.2, 12, -3]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-2.1, 12, -3]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-4.2, 12, -3]}
-            scale={[1, 1, 1]}
-            />
-
-            {/* 4th row */}
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-3, 12, -1]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-0.8, 12, -1]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[1.4, 12, -1]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[3.6, 12, -1]}
-            scale={[1, 1, 1]}
-            />
-
-            {/* 3rd row */}
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-1.9, 12, 1]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[0.5, 12, 1]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[2.8, 12, 1]}
-            scale={[1, 1, 1]}
-            />
-
-            {/* 2nd row */}
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[-0.8, 12, 3]}
-            scale={[1, 1, 1]}
-            />
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[1.5, 12, 3]}
-            scale={[1, 1, 1]}
-            />
-
-            {/* 1st row */}
-            <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes['����������������-material'].geometry}
-            material={materials.material}
-            position={[0.3, 12, 5]}
-            scale={[1, 1, 1]}
-            />
-
-        </group>
+    <group {...props}>
+      {cans.map((position, index) => (
+        <mesh
+          key={index}
+          ref={canRefs[index]}
+          castShadow
+          receiveShadow
+          geometry={nodes['����������������-material'].geometry}
+          material={materials.material}
+        />
+      ))}
     </group>
-  )
-}
+  );
+});
 
-useGLTF.preload('/iron_can.glb')
+useGLTF.preload('/iron_can.glb');
 
 export default IronCan;
-
-
-
-
