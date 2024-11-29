@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber';
 
 const SkyTarget = ({ timer, sendSkyTargetScore }) => {
 
-    const { nodes, materials } = useGLTF('/target_bnc_bike_fighter.glb');
+    const { nodes, materials } = useGLTF('/GLB_SkyTarget.glb');
     const ref = useRef();
     const [sktTargetIsHit, setSktTargetIsHit] = useState(false);
 
@@ -54,7 +54,7 @@ const SkyTarget = ({ timer, sendSkyTargetScore }) => {
     );
 };
 
-useGLTF.preload('/target_bnc_bike_fighter.glb');
+useGLTF.preload('/GLB_SkyTarget.glb');
 
 
 export default SkyTarget;
