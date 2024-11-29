@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 
 
 const MagicalDuo = (props) => {
-  const { nodes, materials } = useGLTF('/magical_duo.glb')
+  const { nodes, materials } = useGLTF('/GLB_MagicalDuo.glb')
 
 
   return (
@@ -120,6 +120,6 @@ const MagicalDuo = (props) => {
   )
 }
 
-useGLTF.preload('/magical_duo.glb')
+useGLTF.preload('/GLB_MagicalDuo.glb')
 
 export default MagicalDuo;

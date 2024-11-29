@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber';
 
 
 const IronCan = forwardRef(({shootTheBall, ballCurrentPosition}, ref) => {
-  const { nodes, materials } = useGLTF('/iron_can.glb');
+  const { nodes, materials } = useGLTF('/GLB_IronCan.glb');
 
   // The positions of the cans
   const cans = [
@@ -128,6 +128,6 @@ const scatterSpecificBalls = () => {
   );
 });
 
-useGLTF.preload('/iron_can.glb');
+useGLTF.preload('/GLB_IronCan.glb');
 
 export default IronCan;
