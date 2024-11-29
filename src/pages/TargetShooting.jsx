@@ -3,6 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import SkyTarget from '../models-components/SkyTarget';
 import GroundTarget from '../models-components/GroundTarget';
 import Gun from '../models-components/Gun';
+import GunShotSoundEffect from "../assets/Sounds/GunShotSoundEffect.mp3"
+
 
 
 const TargetShooting = () => {
@@ -10,6 +12,8 @@ const TargetShooting = () => {
   const [timer, setTimer] = useState(20);
   const [shootingTargetTotalScore, setShootingTargetTotalScore] = useState(0);
   const [gunPosition, setGunPosition] = useState([2,-3,1]);
+
+  const audio = new Audio(GunShotSoundEffect);
 
   const handleGroundTargetScore = () => {
     setShootingTargetTotalScore(shootingTargetTotalScore+1);
@@ -29,7 +33,9 @@ const TargetShooting = () => {
     }
   }, [timer]);
 
-  
+  const PlayAudio = () => {
+    audio.play();
+  }
 
   return (
     <div className="w-full h-screen relative"  style={{cursor: 'url("src/assets/WeaponSight.png"), auto'}}>
@@ -43,8 +49,8 @@ const TargetShooting = () => {
         Seconds: {timer}
       </div>
 
-      <Canvas className="w-full h-screen bg-transparent" shadows>
-        <ambientLight intensity={0.6} />
+      <Canvas className="w-full h-screen bg-transparent" shadows onClick={PlayAudio}>
+        <ambientLight intensity={0.6}/>
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
           <SkyTarget timer={timer} sendSkyTargetScore={handleSkyTargetScore}/>
           <GroundTarget position={[0, 0.5,-8]} rotation={[0, 3.1, 0]} timer={timer} sendGroundTargetScore={handleGroundTargetScore}/>
