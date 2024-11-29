@@ -7,7 +7,7 @@ import Gun from '../models/Gun';
 
 const TargetShooting = () => {
 
-  const [timer, setTimer] = useState(15);
+  const [timer, setTimer] = useState(20);
   const [shootingTargetTotalScore, setShootingTargetTotalScore] = useState(0);
   const [gunPosition, setGunPosition] = useState([2,-3,1]);
   const [gunRotation, setGunRotation] = useState([0,0,0]);
