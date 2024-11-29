@@ -1,9 +1,10 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import RedTent from '../models/RedTent';
-import MagicalDuo from '../models/MagicalDuo';
-import BlueTent from '../models/BlueTent';
-import Character1 from '../models/Character1';
+import RedTent from '../models-components/RedTent';
+import MagicalDuo from '../models-components/MagicalDuo';
+import BlueTent from '../models-components/BlueTent';
+import Character1 from '../models-components/Character1';
+import Cat from '../models-components/Cat';
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
         <BlueTent />
         <Character1 />
         <MagicalDuo />
+        <Cat />
         <RedTent />
       </Canvas>
     </div>

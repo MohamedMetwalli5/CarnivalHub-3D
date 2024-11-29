@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
+import PopSoundEffect from "../assets/Sounds/PopSoundEffect.mp3"
+
+
 
 const RedTent = (props) => {
   const { nodes, materials } = useGLTF('/circus.glb');
@@ -9,9 +12,11 @@ const RedTent = (props) => {
 
   const navigate = useNavigate();
 
+  const audio = new Audio(PopSoundEffect);
+
   return (
     <group
-      {...props}
+
       dispose={null}
       onPointerOver={(event) => {
         event.stopPropagation();
@@ -23,7 +28,7 @@ const RedTent = (props) => {
         setIsHovered(false);
         document.body.style.cursor = 'default';
       }}
-      onClick={() => navigate('/ball-and-bottle-toss')}
+      onClick={() => {audio.play(); navigate('/ball-and-bottle-toss')}}
     >
       <mesh
         castShadow

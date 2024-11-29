@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import IronCan from '../models/IronCan';
-import Ball from '../models/Ball';
-import Spaceship from '../models/Spaceship';
-import BallAngleContoller from '../components/BallAngleContoller';
-import BallSpeedContoller from '../components/BallSpeedContoller';
+import IronCan from '../models-components/IronCan';
+import Ball from '../models-components/Ball';
+import Spaceship from '../models-components/Spaceship';
+import BallAngleContoller from '../ball-controllers/BallAngleContoller';
+import BallSpeedContoller from '../ball-controllers/BallSpeedContoller';
 
 
 

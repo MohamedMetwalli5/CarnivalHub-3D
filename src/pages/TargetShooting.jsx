@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import SkyTarget from '../models/SkyTarget';
-import GroundTarget from '../models/GroundTarget';
-import Gun from '../models/Gun';
+import SkyTarget from '../models-components/SkyTarget';
+import GroundTarget from '../models-components/GroundTarget';
+import Gun from '../models-components/Gun';
 
 
 const TargetShooting = () => {
