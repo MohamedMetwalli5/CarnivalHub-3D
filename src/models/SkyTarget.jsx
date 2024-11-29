@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 
 
 
-const SkyTarget = ({ timer }) => {
+const SkyTarget = ({ timer, sendSkyTargetScore }) => {
 
     const { nodes, materials } = useGLTF('/target_bnc_bike_fighter.glb');
     const ref = useRef();
@@ -13,6 +13,7 @@ const SkyTarget = ({ timer }) => {
     useFrame(() => {
         if (sktTargetIsHit && timer > 0) {
             setSktTargetIsHit(false);
+            sendSkyTargetScore(); // Sending a notification to the parent to increase the sky score
             ref.current.position.x = Math.round(Math.random() * (10 - (-10)) + (-10));
             ref.current.position.y = Math.round(Math.random() * (4.5 - 2.5) + 2.5);
         }

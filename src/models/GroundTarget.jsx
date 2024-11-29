@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 
 
 
-const GroundTarget = ({position, rotation, timer}) => {
+const GroundTarget = ({position, rotation, timer, sendGroundTargetScore}) => {
 
     const { nodes, materials } = useGLTF('/archery_target.glb')
     const ref = useRef();
@@ -13,6 +13,7 @@ const GroundTarget = ({position, rotation, timer}) => {
     useFrame ((state, delta) => {
         if(targetIsHit && timer > 0){
             setTargetIsHit(false);
+            sendGroundTargetScore(); // Sending a notification to the parent to increase the ground score
             ref.current.position.x = Math.round(Math.random() * (17 - (-17)) + (-17));
             ref.current.position.y = Math.round(Math.random() * (1.5 - 0.5) + 0.5);
         }
