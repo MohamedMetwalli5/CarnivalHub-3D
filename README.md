@@ -4,13 +4,11 @@
 # CarnivalHub 3D
 
 # Setup Instructions
-1. Navigate to the Frontend Directory
-``` cd frontend ```
-2. Install Dependencies
+1. Install Dependencies
 ``` npm install ```
-3. Start the Frontend
+2. Start the Frontend
 ``` npm run dev ```
-4. The frontend will start on http://localhost:5173
+3. The frontend will start on http://localhost:5173
 
 
 ---
