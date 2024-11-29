@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 
+
+
 const TargetShooting = () => {
 
   return (
@@ -11,10 +13,10 @@ const TargetShooting = () => {
 
 
       <Canvas className="w-full h-screen bg-transparent" shadows>
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={0.6} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
         <Physics gravity={[0, -9.8, 0]}>
-
+          
         </Physics>
       </Canvas>
     </div>

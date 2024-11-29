@@ -3,10 +3,14 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import IronCan from '../models/IronCan';
 import Ball from '../models/Ball';
+import Spaceship from '../models/Spaceship';
 import BallAngleContoller from '../components/BallAngleContoller';
 import BallSpeedContoller from '../components/BallSpeedContoller';
 
+
+
 const BallAndBottleToss = () => {
+  
   const [ballAngleValue, setBallAngleValue] = useState(0);
   const [ballSpeedValue, setBallSpeedValue] = useState(0);
   const [shootTheBall, setShootTheBall] = useState(false);
@@ -48,6 +52,7 @@ const BallAndBottleToss = () => {
       <Canvas className="w-full h-screen bg-transparent" shadows>
         <ambientLight intensity={0.7} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
+        <Spaceship />
         {/* To keep the cans static while maintaining their dynamic behavior for a cool scattering effect, I set their gravitational constant to a small value of 0.000001 :) */}
         <Physics gravity={[0, -0.000001, 0]}>
           <IronCan ref={canRef} shootTheBall={shootTheBall} ballCurrentPosition={ballCurrentPosition}/>

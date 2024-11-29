@@ -15,7 +15,7 @@ const Home = () => {
 
       <div className="absolute bottom-0 w-full h-1/2 bg-green-900"></div>
       <Canvas className="w-full h-screen bg-transparent" shadows>
-        <ambientLight intensity={0.7} />
+        <ambientLight intensity={0.6} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
         <BlueTent />
         <Character1 />

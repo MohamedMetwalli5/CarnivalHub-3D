@@ -32,7 +32,7 @@ const BlueTent = (props) => {
         material={materials.tent_pirple}
         position={[-700,-50,-800]}
         rotation={[-Math.PI / 2, 0, 0.6]}
-        scale={hovered? [1.1, 1.1, 1.1] : [1, 1, 1]}
+        scale={hovered? [1, 1, 1.1] : [1, 1, 1]}
         />
     </group>
     )
