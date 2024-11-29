@@ -105,7 +105,7 @@ const scatterSpecificBalls = () => {
     // scatterAll,
     shoot: () => {
         if(!shootTheBall){
-            console.log("Shoot the ball!", shootTheBall); 
+            console.log("Shoot the ball!"); 
         }
     },
   }));

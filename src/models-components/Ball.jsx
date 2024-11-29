@@ -29,8 +29,8 @@ const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall, onBallCurrentPositi
             }
 
             if(ref.current.position.z <= -8){
-                console.log("The ball passed the iron cans!");
-                setTime(0); // which means stopping the ball from moving further
+                console.log("The cannon ball/balls passed the iron cans!");
+                setTime(0);
             }
     });
 

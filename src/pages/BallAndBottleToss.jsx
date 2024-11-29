@@ -46,7 +46,7 @@ const BallAndBottleToss = () => {
         onClick={handleShoot}
         className="absolute bottom-48 right-6 p-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md z-50 hover:bg-blue-700 hover:cursor-pointer"
       >
-        Shoot
+        Start
       </button>
 
       <Canvas className="w-full h-screen bg-transparent" shadows>
