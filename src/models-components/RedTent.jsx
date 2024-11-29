@@ -6,7 +6,7 @@ import PopSoundEffect from "../assets/Sounds/PopSoundEffect.mp3"
 
 
 const RedTent = (props) => {
-  const { nodes, materials } = useGLTF('/circus.glb');
+  const { nodes, materials } = useGLTF('/GLB_RedTent.glb');
 
   const [hovered, setIsHovered] = useState(false);
 
@@ -49,10 +49,8 @@ const RedTent = (props) => {
   );
 };
 
-useGLTF.preload('/circus.glb');
+useGLTF.preload('/GLB_RedTent.glb');
+
 
 export default RedTent;
-
-
-
 
