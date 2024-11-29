@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 
-const Character1 = (props) => {
-  const { nodes, materials } = useGLTF('/young_guy_keeps_his_hands_in_pockets.glb')
+const Character = (props) => {
+  const { nodes, materials } = useGLTF('/GLB_Character.glb')
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -18,6 +18,6 @@ const Character1 = (props) => {
   )
 }
 
-useGLTF.preload('/young_guy_keeps_his_hands_in_pockets.glb')
+useGLTF.preload('/GLB_Character.glb')
 
-export default Character1
+export default Character;

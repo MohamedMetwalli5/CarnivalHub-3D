@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import RedTent from '../models-components/RedTent';
 import MagicalDuo from '../models-components/MagicalDuo';
 import BlueTent from '../models-components/BlueTent';
-import Character1 from '../models-components/Character1';
+import Character from '../models-components/Character';
 import Cat from '../models-components/Cat';
 
 
@@ -19,7 +19,7 @@ const Home = () => {
         <ambientLight intensity={0.6} />
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
         <BlueTent />
-        <Character1 />
+        <Character />
         <MagicalDuo />
         <Cat />
         <RedTent />
