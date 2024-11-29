@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber'
 
 const GroundTarget = ({position, rotation, timer, sendGroundTargetScore}) => {
 
-    const { nodes, materials } = useGLTF('/archery_target.glb')
+    const { nodes, materials } = useGLTF('/GLB_GroundTarget.glb')
     const ref = useRef();
     const [targetIsHit, setTargetIsHit] = useState(false);
 
@@ -57,6 +57,6 @@ const GroundTarget = ({position, rotation, timer, sendGroundTargetScore}) => {
     )
 }
     
-    useGLTF.preload('/archery_target.glb')
+    useGLTF.preload('/GLB_GroundTarget.glb')
     
 export default GroundTarget;
