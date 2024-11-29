@@ -5,7 +5,7 @@ import CatSound from "../assets/Sounds/CatSound.mp3"
 
 const Cat = () => {
 
-  const { nodes, materials } = useGLTF('/3d_modelling_my_cat_fripouille.glb')
+  const { nodes, materials } = useGLTF('/GLB_Cat.glb')
 
   const [hovered, setIsHovered] = useState(false);
 
