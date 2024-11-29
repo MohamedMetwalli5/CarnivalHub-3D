@@ -12,36 +12,35 @@ const Gun = ({position, rotation}) => {
     const [mouseX, setMouseX] = useState()
     const [mouseY, setMouseY] = useState()
 
-    useFrame((state, delta) => {
+    const centerX = window.innerWidth/2;
+    const centerY = window.innerHeight/2;
 
-        if(mouseX > 930){ // right
-            if(mouseY > 200){ // bottom
-                ref.current.rotation.x = 0;
-                ref.current.rotation.y = -0.5;
-            }else{ // top
-                ref.current.rotation.x = 0.5;
-                ref.current.rotation.y = -0.5;
+    useFrame(() => {
+        if (mouseX > centerX + 200) { // right
+            if (mouseY > centerY) { // bottom
+                ref.current.rotation.set(0, -0.5, 0);
+            } else { // top
+                ref.current.rotation.set(0.5, -0.5, 0);
             }
-        }else if(mouseX < 330){ // left
-            if(mouseY > 200){ // bottom
-                ref.current.rotation.x = 0;
-                ref.current.rotation.y = 0.5;
-            }else{ // top
-                ref.current.rotation.x = 0.5;
-                ref.current.rotation.y = 0.5;
+
+        } else if (mouseX < centerX-200) { // left
+            if (mouseY > centerY) { // bottom
+                ref.current.rotation.set(0, 0.5, 0);
+            } else { // top
+                ref.current.rotation.set(0.5, 0.5, 0);
             }
-        }else{ // center
-            if(mouseY > 200){ // bottom
-                ref.current.rotation.x = 0;
-                ref.current.rotation.y = 0;
-            }else{ // top
-                ref.current.rotation.x = 0.5;
-                ref.current.rotation.y = 0;
+            
+        } else { // center
+            if (mouseY > centerY) { // bottom
+                ref.current.rotation.set(0, 0, 0);
+            } else { // top
+                ref.current.rotation.set(0.5, 0, 0);
             }
         }
         // console.log(mouseX, mouseY);
     });
 
+    
     // for the mouse position tracking
     useEffect(
         () => {
@@ -58,7 +57,6 @@ const Gun = ({position, rotation}) => {
         },
         [setMouseX, setMouseY]
       )
-
 
 
     return (

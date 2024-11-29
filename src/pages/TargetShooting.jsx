@@ -10,7 +10,6 @@ const TargetShooting = () => {
   const [timer, setTimer] = useState(20);
   const [shootingTargetTotalScore, setShootingTargetTotalScore] = useState(0);
   const [gunPosition, setGunPosition] = useState([2,-3,1]);
-  const [gunRotation, setGunRotation] = useState([0,0,0]);
 
   const handleGroundTargetScore = () => {
     setShootingTargetTotalScore(shootingTargetTotalScore+1);
@@ -49,7 +48,7 @@ const TargetShooting = () => {
         <directionalLight castShadow position={[-5, 10, 0]} intensity={4} />
           <SkyTarget timer={timer} sendSkyTargetScore={handleSkyTargetScore}/>
           <GroundTarget position={[0, 0.5,-8]} rotation={[0, 3.1, 0]} timer={timer} sendGroundTargetScore={handleGroundTargetScore}/>
-          <Gun position={gunPosition} rotation={gunRotation} />
+          <Gun position={gunPosition} rotation={[0, 0, 0]} />
       </Canvas>
     </div>
   );
