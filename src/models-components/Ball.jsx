@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 
 const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall, onBallCurrentPositionChange}) => {
-    const { nodes, materials } = useGLTF('/ball_-_shooting_area.glb')
+    const { nodes, materials } = useGLTF('/GLB_Ball.glb')
     const [hovered, setIsHovered] = useState(false);
     const [time, setTime] = useState(0); // tracking the elapsed time
     const ref = useRef();
@@ -60,6 +60,6 @@ const Ball = ({ballAngleValue, ballSpeedValue, shootTheBall, onBallCurrentPositi
         </group>
     )
 }
-useGLTF.preload('/ball_-_shooting_area.glb')
+useGLTF.preload('/GLB_Ball.glb')
 
 export default Ball;
