@@ -48,6 +48,6 @@ const Cat = () => {
   )
 }
 
-useGLTF.preload('/3d_modelling_my_cat_fripouille.glb')
+useGLTF.preload('/GLB_Cat.glb')
 
 export default Cat

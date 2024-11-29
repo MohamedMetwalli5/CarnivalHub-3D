@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber'
 
 const Gun = ({position, rotation}) => {
   
-    const { nodes, materials } = useGLTF('/colt_m1911.glb')
+    const { nodes, materials } = useGLTF('/GLB_Gun.glb')
 
     const ref = useRef();
     const [mouseX, setMouseX] = useState()
@@ -264,7 +264,7 @@ const Gun = ({position, rotation}) => {
     )
 }
 
-useGLTF.preload('/colt_m1911.glb')
+useGLTF.preload('/GLB_Gun.glb')
 
 
 export default Gun;
