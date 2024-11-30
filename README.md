@@ -8,13 +8,13 @@ CarnivalHub 3D is a 3D browser game that brings the thrill of a carnival to life
 
 
 # Setup Instructions
-1. Navigate to the Directory 
+1. Navigate to the Directory: 
 ```cd CarnivalHub-3D```
-2. Install Dependencies
+2. Install Dependencies:
 ``` npm install ```
-3. Start the Frontend
+3. Start the application:
 ``` npm run dev ```
-4. The frontend will start on http://localhost:5173
+4. Open the app in your browser at: http://localhost:5173
 
 
 ---
