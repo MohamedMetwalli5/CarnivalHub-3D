@@ -19,8 +19,8 @@ CarnivalHub 3D is a 3D browser game that brings the thrill of a carnival to life
 
 ---
 
-# Screenshot
-![image](https://github.com/user-attachments/assets/7908f37a-c9ba-45af-bb3c-f00d22d39ce1)
+# Demo
+https://github.com/user-attachments/assets/ec6d8813-6fa1-48b8-9e13-e5964e574f3f
 
 
 ---
